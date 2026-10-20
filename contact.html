@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Mee Moo Tous Keeklous</title>
+    <meta name="description" content="Get in touch with Mee Moo Tous Keeklous about digital and generative art.">
+    <meta name="author" content="Mee Moo Tous Keeklous">
+    <!-- v06: αίτημα προς crawlers να μην χρησιμοποιούν το περιεχόμενο για εκπαίδευση AI (δεν επηρεάζει την κανονική ευρετηρίαση) -->
+    <meta name="robots" content="noai, noimageai">
+    <meta name="theme-color" content="#2F4F4F">
+
+    <!-- Εικονίδια (favicon από το avatar) -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph: πώς εμφανίζεται ο σύνδεσμος όταν τον μοιράζονται (Facebook, WhatsApp, Viber, κλπ) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mee Moo Tous Keeklous">
+    <meta property="og:title" content="Contact | Mee Moo Tous Keeklous">
+    <meta property="og:description" content="Get in touch with Mee Moo Tous Keeklous about digital and generative art.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://meemootouskeeklous.github.io/contact.html">
+    <meta property="og:image" content="https://meemootouskeeklous.github.io/assets/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="canonical" href="https://meemootouskeeklous.github.io/contact.html">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <noscript>
+        <p style="padding:12px 20px; font-family:Arial,sans-serif;">
+            <strong>Mee Moo Tous Keeklous</strong> &mdash; digital &amp; generative art<br>
+            <a href="home.html">Home</a> | <a href="my-art.html">My Art</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+        </p>
+        <p style="padding:0 20px; font-family:Arial,sans-serif;"><em>Please enable JavaScript to see the full site.</em></p>
+    </noscript>
+
+    <!-- Σταθερό Header + hero-banner . πριν το Κεντρικό Περιεχόμενο -->
+    <div id="globalheader-placeholder"></div>
+
+    <main id="main-content">
+        <section class="contact-section">
+            <h2>Get in Touch</h2>
+            <p id="contact-message"></p>
+            <a id="contact-email" class="btn" href=""></a>
+            <!-- v16: αντιγραφή διεύθυνσης (για όσους δεν έχουν ρυθμισμένο πρόγραμμα email) -->
+            <button id="copy-email" class="btn btn-secondary" type="button">Copy address</button>
+            <!-- v11: καταστήματα (από data.json: pages.contact.shops) -->
+            <div id="contact-shops" class="shops"></div>
+
+            <!-- v07: Προς το παρόν δεν υπάρχουν social media. Όταν αποκτηθούν:
+                 1) ξεσχολίασε το μπλοκ παρακάτω,
+                 2) στο data.json μετέφερε τα στοιχεία από το "_social_links_future" στο "social_links".
+            <div class="social-links-container">
+                <h3>Find me on</h3>
+                <div id="social-links" class="social-grid">
+                    (τα social links μπαίνουν εδώ από τη JS)
+                </div>
+            </div>
+            -->
+        </section>
+    </main>
+
+    <!-- v06: Footer με δήλωση πνευματικής ιδιοκτησίας -->
+    <footer class="site-footer">
+        &copy; 2026 Mee Moo Tous Keeklous. All rights reserved. The artworks on this site may not be copied, reproduced or used without written permission.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

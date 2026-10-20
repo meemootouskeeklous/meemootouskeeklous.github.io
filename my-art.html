@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Art | Mee Moo Tous Keeklous</title>
+    <meta name="description" content="Portfolio of digital and generative artworks by Mee Moo Tous Keeklous. Mathematics as a brush, code as a canvas.">
+    <meta name="author" content="Mee Moo Tous Keeklous">
+    <!-- v06: αίτημα προς crawlers να μην χρησιμοποιούν το περιεχόμενο για εκπαίδευση AI (δεν επηρεάζει την κανονική ευρετηρίαση) -->
+    <meta name="robots" content="noai, noimageai">
+    <meta name="theme-color" content="#2F4F4F">
+
+    <!-- Εικονίδια (favicon από το avatar) -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph: πώς εμφανίζεται ο σύνδεσμος όταν τον μοιράζονται (Facebook, WhatsApp, Viber, κλπ) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mee Moo Tous Keeklous">
+    <meta property="og:title" content="My Art | Mee Moo Tous Keeklous">
+    <meta property="og:description" content="Portfolio of digital and generative artworks by Mee Moo Tous Keeklous. Mathematics as a brush, code as a canvas.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://meemootouskeeklous.github.io/my-art.html">
+    <meta property="og:image" content="https://meemootouskeeklous.github.io/assets/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="canonical" href="https://meemootouskeeklous.github.io/my-art.html">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <noscript>
+        <p style="padding:12px 20px; font-family:Arial,sans-serif;">
+            <strong>Mee Moo Tous Keeklous</strong> &mdash; digital &amp; generative art<br>
+            <a href="home.html">Home</a> | <a href="my-art.html">My Art</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+        </p>
+        <p style="padding:0 20px; font-family:Arial,sans-serif;"><em>Please enable JavaScript to see the full site.</em></p>
+    </noscript>
+
+    <!-- Σταθερό Header + hero-banner . πριν το Κεντρικό Περιεχόμενο -->
+    <div id="globalheader-placeholder"></div>
+
+    <!-- Κεντρικό Περιεχόμενο (Σελίδα Έργων) -->
+    <main id="main-content">
+        
+        <!-- Φίλτρα -->
+        <div id="filters-container" class="filters">
+            <!-- Τα κουμπιά (All, collection 1 κλπ) θα μπουν εδώ από τη JS -->
+        </div>
+
+        <!-- Πλέγμα Έργων (Thumbnails) -->
+        <div id="portfolio-grid" class="art-grid">
+            <!-- Τα αποτυπώματα θα φορτώσουν εδώ -->
+        </div>
+
+    </main>
+
+    <!-- Lightbox Modal (Κρυφό αρχικά) -->
+    <div id="lightbox" class="lightbox hidden">
+        <span id="close-lightbox" class="close-btn" title="Close (Esc)">&times;</span>
+        <button id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Previous artwork">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Next artwork">&#10095;</button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-image-wrap">
+                <img id="lightbox-img" src="" alt="High Resolution Artwork">
+                <div id="lightbox-loading" class="lightbox-loading hidden">Loading&hellip;</div>
+            </div>
+            <div class="lightbox-info">
+                <h3 id="lightbox-title" class="lightbox-title"></h3>
+                <div id="lightbox-text" class="lightbox-desc"></div>
+                <div id="lightbox-counter" class="lightbox-counter"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- v06: Footer με δήλωση πνευματικής ιδιοκτησίας -->
+    <footer class="site-footer">
+        &copy; 2026 Mee Moo Tous Keeklous. All rights reserved. The artworks on this site may not be copied, reproduced or used without written permission.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

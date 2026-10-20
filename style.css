@@ -1,0 +1,540 @@
+/* Βασικές Ρυθμίσεις */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f9f9f9; 
+    color: #333;
+}
+
+/* Σταθερό Header */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: DarkSlateGray; /* #ffffff; */
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    height: 80px; /* Λεπτή, διακριτική μπάρα */
+}
+
+.header-container {
+    max-width: none; /* v01: το header πιάνει όλο το πλάτος (avatar αριστερά / μενού δεξιά) */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative; /* Σημαντικό για το κρεμαστό avatar */
+    padding: 0 20px;
+}
+
+/*  Avatar  */
+.avatar-container {
+    position: absolute;
+    top:   5px;
+    left: 20px;
+}
+
+#artist-avatar {
+    width:  69px; /* v07: 65px + 2*2px περίγραμμα, ίδιο συνολικό μέγεθος με πριν */
+    height: 69px;
+    box-sizing: border-box;
+    padding: 4px;
+    background-color: #fff; /* το avatar είναι διαφανές: λευκός κύκλος από πίσω */
+    object-fit: contain;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 50%;
+}
+
+/* --- Cover Banner --- PROSQHKH */
+.hero-banner {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Το στοιχείο που κάνει το αυτόματο crop */
+    display: block;
+}
+
+/* Όνομα Καλλιτέχνη (Πάνω αριστερά) */
+.artist-name {
+    margin-left: 90px; /* v01: Αφήνει χώρο για το κρεμαστό avatar (πριν 70px) */
+}
+
+#artist-name {
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Οριζόντιο Μενού (Πάνω δεξιά) */
+.main-nav {
+    margin-left: auto;  /* Σπρώχνει το μενού τέρμα δεξιά */
+    position: relative;
+    /* top: 0; */
+    /* right:0; */
+}
+
+#menu-list {
+    list-style: none;
+    display: flex;
+    gap: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+#menu-list a {
+    float: left;
+    white-space: nowrap; /* v07: το κείμενο του κουμπιού δεν σπάει ποτέ σε δύο γραμμές */
+    text-decoration: none;
+    color: white;  /*  #555; */
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 17px 16px;  
+}
+
+#menu-list a:hover {
+    background-color:LightCyan ;
+    color: #C2410C; /* v04: καμένο πορτοκαλί (πριν: red) */
+    transition: color 0.2s, background-color 0.2s;
+}
+
+#menu-list a:active {
+    background-color:DarkCyan ;
+    color: yellow; /* #000;  νο γινει ασπρο */
+}
+
+/* ΠΡΟΣΘΗΚΗ: Στυλ για το κουμπί της σελίδας που είναι ήδη επιλεγμένη */
+#menu-list a.current {
+    background-color: DarkCyan !important; /* Το χρώμα που θέλεις να παραμένει */
+    color: white !important;               /* Το χρώμα των γραμμάτων */
+    font-weight: bold;
+}
+
+/* Ενότητες Αρχικής Σελίδας */
+#main-content {
+    max-width: 1200px;
+    margin: 40px auto 50px;
+    padding: 0 20px;
+}
+
+.home-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #313131; /* gold;  #333; */
+    color: #f1f1f1; /* green;   #fff; */
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.shops { display: flex; flex-wrap: wrap; gap: 0 12px; }
+
+/* v16: κουμπί <button> με την ίδια εμφάνιση του .btn + δευτερεύον στυλ */
+button.btn {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    margin-left: 10px;
+    background-color: #e4e4e4;
+    color: #313131;
+}
+
+/* v02: Σελίδα About */
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.about-text {
+    text-align: left;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Responsive για Κινητά */
+
+/* --- Hamburger Menu Icon --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    /* Το avatar μαζεύεται και γίνεται μικρό/συμπαγές */
+    .avatar-container {
+        position: static;
+        margin-right: 15px;
+    }
+    
+    #artist-avatar {
+        width:  69px;
+        height: 69px;
+        border-radius: 50%; /* Κυκλικό για το κινητό */
+        border: 2px solid #fff;
+    }
+
+    .hero-banner {
+        height: 200px; /* Στενεύει στο κινητό για να μη χάνεται το μενού */
+    }
+
+    .artist-name {
+        margin-left: 0;
+    }
+
+    /* Εμφανίζουμε τις 3 γραμμούλες στο κινητό */
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+
+    /* κκκκοβω... */
+    /* Το μενού γίνεται ένα κομψό αιωρούμενο κουτί στα δεξιά */
+    #menu-list {
+        position: absolute;
+        top: 48px; 
+        right: -10px; /* v01: κενό από την άκρη της οθόνης 10px αντί για 20px */
+        background-color: DarkSlateGray; /* #fff; */
+        width: max-content; /* v03: στενότερο μενού: 100px, αλλά μεγαλώνει αν χρειαστεί (π.χ. "Contact" bold) */
+        min-width: 100px;
+        border-radius: 2px; /* Στρογγυλεμένες γωνίες */
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Πιο έντονη σκιά για βάθος */
+        max-height: 0; 
+        overflow: hidden;
+        transition: max-height 0.3s ease-out; 
+        z-index: 1001; /* Προσθήκη για να είναι πάντα πάνω από το περιεχόμενο */
+    }
+
+    /* Η λύση για το κρυμμένο "Contact" */
+    #menu-list.active {
+        max-height: 400px; /* Αυξήσαμε το όριο για να χωράνε άνετα όλες οι επιλογές */
+    }
+
+    #menu-list li {
+        width: 100%;
+        text-align: center; /* left; */ /* Αριστερή στοίχιση για πιο επαγγελματική εμφάνιση */
+    }
+
+    #menu-list a {
+        display: block;
+        float: none; /* v03: το float (από τον κανόνα της φαρδιάς οθόνης) έκανε το κουμπί να παίρνει μόνο το πλάτος του κειμένου */
+        width: auto;
+        padding: 15px 16px; /* Περιθώριο μέσα στο κουμπί */
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Αφαιρούμε την περιττή κάτω γραμμή από το τελευταίο στοιχείο */
+    #menu-list li:last-child a {
+        border-bottom: none;
+    }
+
+}
+
+/* eo part1 */
+
+/* --- Σελίδα My Art --- */
+
+/* Φίλτρα */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 2px solid #333;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Πλέγμα (Grid) για τα Αποτυπώματα */
+.art-grid {
+    /* v05: masonry με JS (σειρά αριστερά→δεξιά). Το script.js βάζει μέσα σε αυτό στήλες (.masonry-col). */
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.masonry-col {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.art-item {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.art-item:hover {
+    transform: scale(1.03); /* Ελαφρύ ζουμ στο hover */
+}
+
+.art-item img {
+    width: 100%;
+    height: auto; /* φυσικό ύψος, η εικόνα φαίνεται ολόκληρη */
+    display: block;
+    /* v05: φόντο (για webp με διαφάνεια). Ανά έργο: "background" στο data.json (--art-bg).
+       Αλλιώς το γενικό "default_art_background" (--art-default-bg). */
+    background-color: var(--art-bg, var(--art-default-bg, #ffffff));
+}
+
+.art-title {   /* προσθήκη */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+/* --- Lightbox / Modal (v03) --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.96); /* πολύ σκούρο ουδέτερο γκρι */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+    /* Μέγεθος "κουτιού" εικόνας (κινητό / στενή οθόνη) */
+    --lb-img-w: 90vw;
+    --lb-img-h: 56vh;
+}
+
+.lightbox.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.lightbox-content {
+    max-width: 96vw;
+    max-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.lightbox-image-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Σταθερό κουτί + object-fit, ώστε το thumbnail και η high-res να πιάνουν την ίδια θέση */
+#lightbox-img {
+    /* v05: το μέγεθος υπολογίζεται από το σχήμα της εικόνας (--ar = πλάτος/ύψος, το βάζει το script.js),
+       ώστε το φόντο (--art-bg) να καλύπτει ακριβώς την εικόνα και όχι ολόκληρο το κουτί. */
+    width: min(var(--lb-img-w), calc(var(--lb-img-h) * var(--ar, 1.5)));
+    height: auto;
+    aspect-ratio: var(--ar, 1.5);
+    object-fit: contain;
+    background-color: var(--art-bg, var(--art-default-bg, #ffffff));
+    /* λεπτό περίγραμμα + απαλή λάμψη γύρω από την ίδια την εικόνα */
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
+    transition: filter 0.3s;
+}
+
+/* Όσο φορτώνει η high-res, φαίνεται θολό το thumbnail */
+#lightbox-img.loading {
+    filter: blur(6px);
+}
+
+.lightbox-loading {
+    position: absolute;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.lightbox-loading.hidden {
+    display: none;
+}
+
+.lightbox-info {
+    color: #fff;
+    margin-top: 16px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.lightbox-title {
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.lightbox-desc {
+    color: #ddd;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.lightbox-counter {
+    margin-top: 12px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 14px;
+    right: 24px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #bbb;
+}
+
+/* Βέλη προηγούμενο / επόμενο */
+.lightbox-nav {
+    position: absolute;
+    top: 38%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-prev { left: 8px; }
+.lightbox-next { right: 8px; }
+
+.lightbox-nav.hidden {
+    display: none;
+}
+
+/* Φαρδιές οθόνες: εικόνα αριστερά, κείμενο δεξιά */
+@media (min-width: 900px) and (orientation: landscape) {
+    .lightbox {
+        --lb-img-w: 64vw;
+        --lb-img-h: 84vh;
+    }
+
+    .lightbox-content {
+        flex-direction: row;
+        gap: 32px;
+        overflow-y: visible;
+    }
+
+    .lightbox-info {
+        margin-top: 0;
+        text-align: left;
+        width: 24vw;
+        max-width: 340px;
+        max-height: 84vh;
+        overflow-y: auto;
+    }
+
+    .lightbox-nav {
+        top: 50%;
+        left: auto;
+    }
+
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+}
+
+/* eo part2 */
+
+/* v06: Footer */
+.site-footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+    color: #777;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* v06: επισήμανση (highlight) μέσα στα κείμενα: ~(h ... ~)h */
+mark.hl {
+    background-color: #fde68a; /* απαλό κίτρινο: άλλαξέ το εδώ */
+    color: inherit;
+    padding: 0 0.15em;
+    border-radius: 2px;
+}
+
+/* στο lightbox το κείμενο είναι ανοιχτόχρωμο σε σκούρο φόντο, οπότε στην επισήμανση το κάνουμε σκούρο */
+.lightbox mark.hl {
+    color: #111;
+}
+
+/* v08: στοίχιση τμήματος κειμένου: ~(L ~)L, ~(C ~)C, ~(R ~)R, ~(J ~)J */
+.al { display: block; }
+.al-left { text-align: left; }
+.al-center { text-align: center; }
+.al-right { text-align: right; }
+.al-justify { text-align: justify; }

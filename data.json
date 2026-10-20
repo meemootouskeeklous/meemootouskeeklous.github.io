@@ -1,0 +1,474 @@
+{
+  "_help_hidden1": "Απόκρυψη έργου: πρόσθεσε <hidden>: true στο έργο του portfolio.artworks. Ισχύει και για τα shops στο pages.contact.",
+  "_help_hidden2": "Δεν εμφανίζεται πουθενά (My Art, αρχική, lightbox). Για να ξαναεμφανιστεί, σβήσε το πεδίο ή βάλε false.", 
+  "_help_hidden3": "Σειρά έργων: display_tier (αύξουσα) + id· χωρίς display_tier πάνε τελευταία.",
+  "_help_collections1": "Συλλογές: ορίζονται στο portfolio.collections (collection_id + collection_title). ",
+  "_help_collections2": "Κάθε έργο έχει <collection_ids>: [<c01>] (λίστα· μπορεί να ανήκει σε πολλές, π.χ. [<c01>, <c02>]). ",
+  "_help_collections3": "Το κουμπί <All> προστίθεται αυτόματα. Συλλογή χωρίς ορατά έργα δεν εμφανίζεται.",
+  "_help_tags1": "Tags (προαιρετικό): σε κάθε έργο <tags>: [<fractal>, <gold>] (αγγλικά, πεζά, 3-6).",
+  "_help_tags2": "Μπαίνουν ως keywords στα δομημένα δεδομένα (SEO) και δεν εμφανίζονται στη σελίδα.",
+  "_help_text01_formatting": "Μορφοποίηση κειμένου (elevator_pitch, full_story, message, περιγραφές έργων):",
+  "_help_text02_formatting": "   ~(b λέξη ~)b = έντονο, ~(i λέξη ~)i = πλάγιο, ~(u λέξη ~)u = υπογράμμιση, ~(h λέξη ~)h = επισήμανση. Γράφεις χωρίς κενό μετά το γράμμα,",
+  "_help_text03_formatting": "    π.χ. ~(bλέξη~)b. Συνδυάζονται. Για κυριολεκτικό ~(b γράψε ~~(b.",
+  "_help_text04_formatting": "    Στοίχιση τμήματος: ~(L…~)L αριστερά, ~(C…~)C κέντρο, ~(R…~)R δεξιά, ~(J…~)J πλήρης ",
+  "_help_text05_formatting": "    (το τμήμα γίνεται δική του γραμμή -  μη βάζεις \\n δίπλα του).", 
+  "site_config"   : {
+    "artist_name"    : "Mee Moo Tous Keeklous",
+    "avatar_url"     : "assets/images/avatar.webp",
+    "avatar_alt"     : "Mee Moo Tous Keeklous — logo",
+    "hero_banner_url": "assets/images/cover.webp",
+    "default_art_background": "#f1f1f1",
+    "social_links"   : {},
+    "_social_links_future": {
+      "instagram"    : "https://instagram.com/...",
+      "artstation"   : "https://artstation.com/...",
+      "behance"      : "https://behance.net/..."
+    }
+  },
+  "menu": [
+    { "id": "home", "title": "Home", "url": "home.html" },
+    { "id": "my_art", "title": "My Art", "url": "my-art.html" },
+    { "id": "about", "title": "About", "url": "about.html" },
+    { "id": "contact", "title": "Contact", "url": "contact.html" }
+  ],
+  "pages": {
+    "home": {
+      "elevator_pitch": [
+        "~(bWhere Code Meets Color: Mathematical Art at Any Age~)b \n\n",
+        "Mathematics and software development filled my professional life for decades. ",
+        "Now, in retirement, those same worlds find a new expression.",
+        "Equations, algorithms, and code become the paintbrush—transforming into images filled with color, rhythm, and harmony.\n",
+        "Every piece grows out of curiosity, experimentation, and a lifelong passion for structure.\n\n",
+        "This work is living proof that mathematics is never cold, but vibrant and full of life.",
+        "Welcome to my space. Enjoy the journey through the beauty of numbers."
+      ],
+      "about_button_text": "Read my full story",
+      "selected_works_title": "Selected Works",
+      "selected_works_ids": ["art_013", "art_009", "art_015", "art_017"]
+    },
+    "about": {
+      "full_story": [
+        [
+          "Born in Greece, with an early fascination for numbers and shapes.", 
+          "A natural path led me to mathematics, revealing that",
+          "behind every formula lies a form, and behind every form, a small story."
+        ],
+        [
+          "Decades of professional life were devoted to programming—writing code, solving problems,",
+          "and building systems with logic and precision as primary tools.",
+          "Retirement did not close a chapter, but opened a fresh one."
+        ],
+        [
+          "Thus, two great passions—~(bmathematics and programming~)b—merged into something entirely new: generative art.",
+          "Through equations, fractals, randomness, and algorithms, programs are written that *paint*.",
+          "Rules are defined, parameters tuned, and the code is left to surprise even its creator.",
+          "Often, a small change to a single number completely transforms the result.",
+          "Every image becomes a dialogue between logic and imagination, where the rigor of numbers meets the freedom of color."
+        ],
+        [
+          "I am an amateur artist. Deep enjoyment drives the entire process.",
+          "Hours spent experimenting, trying, failing, and trying again shape each piece until the final image emerges."
+        ],
+        [
+          "This website presents a curated selection of work.",
+          "May it spark a shared feeling: that mathematics is not merely knowledge,",
+          "but beauty, and that art can be born where least expected—deep inside a line of code."
+        ]
+      ]
+    },
+    "contact": {
+      "email": "meemootouskeeklous@gmail.com",
+      "message": "Feel free to reach out for collaborations or just to say hi!",
+      "shops": [
+        { "text": "Prints & products on Redbubble", "url": "https://www.redbubble.com/shop/molivi", "hidden": false },
+        { "text": "Society6", "url": "https://society6.com/meemootouskeeklous", "hidden": true }
+      ]
+    }
+  },
+  "portfolio": {
+    "collections": [
+      { "collection_id": "c01", "collection_title": "early works" },
+      { "collection_id": "c02", "collection_title": "minimal artworks" },
+      { "collection_id": "c03", "collection_title": "chaos and symmetry" }
+    ],
+    "artworks": [
+      {
+        "id": "art_001",  
+        "display_tier": 80,
+        "tags": ["digital art", "mathematical art", "parametric curve", "heart", "spiral", "red"],
+        "title": "Spiral heart filled with indian red color",
+        "thumb_width": 308, "thumb_height": 308,
+        "alt": "Heart-shaped spiral of nested red outlines filled with a soft indian red color",
+        "collection_ids": ["c01"],
+        "thumbnail_url": "assets/images/thumbs/art_001_thumb.webp",
+        "high_res_url": "assets/images/highres/art_001_full.webp",
+        "description": [
+          "The parametric heart curve is a timeless and elegant piece of mathematical art.", 
+          "In its standard form, it is defined by the following system of equations:\n",
+          "~(i  x = 16 * (sin(t))^3 ~)i \n",
+          "~(i  y = 13 * cos(t) - 5 * cos(2*t) - 2 * cos(3*t) - cos(4*t) ~)i \n",
+          "~(i  (with t taking values in the interval [0, 2*pi]) ~)i \n\n",
+          "To achieve the mesmerizing visual result you see in the graphic,", 
+          "a few creative adjustments were introduced to the base formula: \n",
+          "~(b*Coefficient Tuning*~)b: Subtle modifications to the constants to balance the proportions and symmetry of the heart.\n",
+          "~(b*Spiral Growth Factor*~)b: Multiplying each equation by a scaling factor dependent on ~(it~)i, ", 
+          "which causes the curve to dynamically expand outward as the angle progresses. \n",
+          "~(b*Extended Domain*~)b: Expanding the domain of ~(it~)i into higher multiples of ~(i2*pi~)i, allowing", 
+          "the lines to wrap around continuously and form the intricate, layered spiral effect."
+        ]
+      },
+      {
+        "id": "art_002",  
+        "display_tier": 80,
+        "tags": ["digital art", "generative art", "phyllotaxis", "golden angle", "spiral", "hearts"],
+        "title": "Phyllotaxis Twist",
+        "alt": "Spiral of small hearts radiating from the center, shifting from deep purple to orange and pale yellow",
+        "collection_ids": ["c01"],
+        "thumbnail_url": "assets/images/thumbs/art_002_thumb.webp",
+        "high_res_url": "assets/images/highres/art_002_full.webp",
+        "description": [
+          "In botany and mathematics, the term ~(b<phyllotaxis>~)b describes how nature arranges petals or seeds around a stem. ",
+          "This phenomenon is modeled by Vogel's spiral, where each element is placed using the Golden Angle (137.5°) ",
+          "and a sublinear radius \n ~(i   (r = c * sqrt(n)) ~)i  \n to ensure maximum packing density. \n",
+          "This artwork introduces a deliberate geometric twist. ",
+          "While preserving the Golden Angle for the rotation, ",
+          "the radius function is transformed into a linear one: \n  ~(i   r = c * n ~)i \n\n",
+          "This shift alters the geometry into an Archimedean spiral. ",
+          "Instead of nature's compact scaling, the linear progression forms distinct visual spokes radiating outward. ",
+          "Along this path, each coordinate is occupied by a heart that gradually increases in size, ",
+          "creating a captivating dialogue between rigid mathematical structure and organic emotion."
+        ]
+      },
+      {
+        "id": "art_003",
+        "display_tier": 60,
+        "tags": ["digital art", "mathematical art", "archimedean spiral", "parametric curve", "rotational symmetry", "colorful"],
+        "title": "Mathematical quadruple tweaked Archimedean spiral",
+        "alt": "Four overlapping curved shapes in red, green, blue and orange, each made of many fine parallel lines and rotated by 90 degrees",
+        "collection_ids": ["c01"],
+        "thumbnail_url": "assets/images/thumbs/art_003_thumb.webp",
+        "high_res_url": "assets/images/highres/art_003_full.webp",
+        "description": [
+          "The Archimedean spiral is one of the most iconic curves in mathematics.",
+          "In its natural polar habitat, it is defined by the equation \n",
+          "   r = a + b * θ \n",
+          "When translated into parametric equations, its fluid motion is captured by: \n",
+          "  x(t) = (a + b * t) * cos(t) \n",
+          "  y(t) = (a + b * t) * sin(t) \n",
+          "But what would happen if we replaced cos(t) with, for example, cos(2t)? ",
+          "What if we experimented with the frequencies and constants? \n",
+          "In short: what happens when mathematical precision meets digital experimentation",
+          "and we begin to <<tweak>> the formulas? \n",
+          "In this piece, we explored that exact curiosity through a two-step creative process: \n",
+          "1. The Transformation: By creatively altering the parametric core equations, we disrupted",
+          "the spiral's classical balance, forcing the curve to fold into an entirely new, unexpected geometry. \n",
+          "2. Chromatic Symmetry: We rendered the resulting curve four times using four distinct colors.",
+          "Each layer is rotated by 90 degrees relative to the previous one, building a hypnotic interplay of fourfold rotational symmetry.",
+          "A digital tapestry where geometry becomes the canvas, and equations turn into brushstrokes."
+        ]
+      },
+      {
+        "id": "art_004",
+        "display_tier": 80,
+        "tags": ["digital art", "mathematical art", "parametric curve", "symmetry", "red", "gold"],
+        "title": "A Silent Symphony of Mathematical Whispers",
+        "alt": "Symmetrical looping curve with a red outline and gold fill, forming a knotted, ribbon-like figure",
+        "collection_ids": ["c01"],
+        "thumbnail_url": "assets/images/thumbs/art_004_thumb.webp",
+        "high_res_url": "assets/images/highres/art_004_full.webp",
+        "description": [
+          "This digital artwork was born from the rigorous precision of mathematics, utilizing", 
+          "parametric and trigonometric equations combined with integrals to define its curves. \n\n",   
+          "Visually, the composition exudes a unique elegance, where the vibrant red outline dynamically ",
+          "bounds the gold fill, creating a sense of perpetual motion against a transparent background. ",
+          "The symmetrical curves weave together a harmonious balance that bridges science with aesthetics." 
+        ]
+      },
+      {
+        "id": "art_005",
+        "display_tier": 80,
+        "tags": ["digital art", "mathematical art", "mandala", "floral", "parametric curve", "minimalist"],
+        "title": "Geometric Mandala with Harmonic Wave Patterns",
+        "background": "#1a1a1a",
+        "alt": "Circular floral pattern of overlapping white loops forming a ring with a smaller circle inside",
+        "collection_ids": ["c01"],
+        "thumbnail_url": "assets/images/thumbs/art_005_thumb.webp",
+        "high_res_url": "assets/images/highres/art_005_full.webp",
+        "description": [
+          "This artwork originates from parametric mathematical equations, combining sine ",
+          "and cosine functions modulated by distinct frequency parameters. ",
+          "Through a precise algorithmic process, numerical constants are converted into a continuous, ",
+          "fluid geometric trajectory across the digital canvas.\n\n",
+          "The visual outcome reveals a striking floral structure that", 
+          "seamlessly balances mathematical rigor with organic elegance.", 
+          "Overlapping lines construct a subtle illusion of depth and movement,", 
+          "yielding a minimalist yet dynamic aesthetic. "
+        ]
+      },
+      {
+        "id": "art_006",
+        "display_tier": 50,
+        "tags": ["digital art", "generative art", "contour plot", "vortex", "psychedelic", "waves"],
+        "title": "Psychedelic Chaos - Entangled Waves",
+        "alt": "Large double spiral of purple, red and white bands, with a psychedelic wave pattern entering from the left",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_006_thumb.webp",
+        "high_res_url": "assets/images/highres/art_006_full.webp",
+        "description": [
+          "This digital artwork is a mathematical representation of complex patterns. ",
+          "Generated using trigonometric functions on a Cartesian grid, it is rendered ",
+          "through contourf plotting, transforming numerical values into visual forms.  \n\n",
+          "The main part is dominated by a striking double vortex, while on the left it  ",
+          "intertwines with a psychedelic wave produced by trigonometric functions. ",
+          "The color gradients enhance the sense of motion and energy, giving the artwork an ethereal ",
+          "yet scientific aesthetic that harmoniously blends mathematics with digital art. "
+        ]
+      },
+      {
+        "id": "art_007",
+        "display_tier": 50,
+        "tags": ["digital art", "generative art", "vortex", "line art", "terracotta", "mosaic"],
+        "title": "Geometric Triple Vortex Brick LineArt",
+        "alt": "Triple spiral vortex made of fine terracotta-colored brick-like marks that follow flowing curved lines",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_007_thumb.webp",
+        "high_res_url": "assets/images/highres/art_007_full.webp",
+        "description": [
+          "This digital artwork is driven by a fluid dynamics algorithm, ",
+          "where the contour lines of a triple vortex are mathematically calculated", 
+          "and converted into automated structural design elements.\n\n",
+          "The result is a mesmerizing mosaic of terracotta bricks that ",
+          "faithfully follow the fluid gradient of the flow. ",
+          "In areas of intense curvature and turbulence, the mortar joints tighten,", 
+          "creating an impression of density and dynamic tension. ",
+          "Rigid geometry seamlessly merges with organic motion, ",
+          "transforming abstract equations into a vivid, ",
+          "earthy texture that evokes the feeling of an ancient, moving mosaic."
+        ]
+      },
+      {
+        "id": "art_008",
+        "display_tier": 40,
+        "tags": ["digital art", "generative art", "contour plot", "vortex", "colorful", "waves"],
+        "title": "Triple vortex on a wavy surface (ver 01)",
+        "alt": "Triple vortex of fine contour lines in green, cyan, red, magenta and blue, with a bright multicolored center",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_008_thumb.webp",
+        "high_res_url": "assets/images/highres/art_008_full.webp",
+        "description": [
+          "The artwork takes shape digitally on a grid of points, emerging through ",
+          "the interaction of mathematical functions and angular fields. ",
+          "Successive transformations guide the numerical values, rendering",
+          "the structure through subtle contour lines.\n\n",
+          "Three vortices form at the center, surrounded by undulating orbits and smaller swirls.",
+          "The composition appears to undergo a quiet metamorphosis, ",
+          "creating a dense yet balanced visual field. ",
+          "The color palette shifts from greens and cyans to reds, magentas, and blues,",
+          "where the tonal transitions impart a soft sense of rhythm, motion, and depth. "
+        ]
+      },
+      {
+        "id": "art_009",
+        "display_tier": 40,
+        "tags": ["digital art", "generative art", "contour plot", "vortex", "colorful", "waves"],
+        "title": "Triple vortex on a wavy surface (ver 02)",
+        "alt": "Triple vortex of fine contour lines shifting from deep blue and cyan through green to yellow and red",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_009_thumb.webp",
+        "high_res_url": "assets/images/highres/art_009_full.webp",
+        "description": [
+          "This piece represents a new exploration on the digital grid, ",
+          "where subtle shifts in the transformation parameters redefine ",
+          "the geometry of the angular fields. ",
+          "The contour lines trace a new structural path, capturing ", 
+          "a distinct equilibrium of mathematical forces. \n\n",
+          "At the center, three vortices and adjacent swirls rearrange into smooth, flowing orbits.", 
+          "The color gradient shifts seamlessly from cool deep blues and cyans, through mid-tone greens,", 
+          "to warm yellows and reds, imparting a natural sense of fluid motion, balance, and quiet depth."
+        ]
+      },
+      {
+        "id": "art_010",
+        "display_tier": 50,
+        "tags": ["digital art", "generative art", "contour plot", "minimalist", "terracotta", "abstract"],
+        "title": "The Pulse of Earth",
+        "alt": "Three groups of curved terracotta-colored lines arranged in a rotational pattern around the center",
+        "collection_ids": ["c02"],
+        "thumbnail_url": "assets/images/thumbs/art_010_thumb.webp",
+        "high_res_url": "assets/images/highres/art_010_full.webp",
+        "description": [
+          "This artwork was algorithmically generated using contour plotting techniques", 
+          "based on parametric functions and coordinate meshes, seamlessly translating ",
+          "complex mathematical equations into dynamic geometric forms. \n\n",
+          "Dense, flowing lines intertwine into an abstract organic composition,", 
+          "evoking a sense of pulsating movement and spatial depth. ",
+          "The rich terracotta tone infuses the piece with earthy warmth, striking", 
+          "a captivating balance against its precise mathematical origins. ",
+          "Set against a transparent background, the sweeping curves breathe freely,", 
+          "guiding the viewer's focus to the rhythmic flow, intricate structure, and ",
+          "harmonious dialogue between algorithmic precision and artistic expression."
+        ]
+      },
+      {
+        "id": "art_011",
+        "display_tier": 50,
+        "tags": ["digital art", "generative art", "truchet tiles", "tiling", "geometric", "colorful"],
+        "title": "Truchet tiles with curved colored lines (ver 01)",
+        "alt": "Truchet tiles with curved two-colored arcs forming circles and S-shaped paths in bright colors",
+        "collection_ids": ["c02"],
+        "thumbnail_url": "assets/images/thumbs/art_011_thumb.webp",
+        "high_res_url": "assets/images/highres/art_011_full.webp",
+        "description": [
+          "This artwork was generated algorithmically based on classic Truchet tiling ",
+          "over a 4X4 geometric grid, where each individual tile features ",
+          "randomly oriented, double-layered curved arcs. \n\n",
+          "Through random orientation and a vivid ten-color palette, the piece transforms ",
+          "a rigid geometric layout into a continuous, dynamic visual flow. ",
+          "The curved forms connect seamlessly across boundaries, giving birth", 
+          "to a lively, vibrant labyrinth that beautifully balances structural order", 
+          "with artistic spontaneity."
+        ]
+      },
+      {
+        "id": "art_012",
+        "display_tier": 50,
+        "tags": ["digital art", "generative art", "tiling", "geometric", "pattern", "minimalist"],
+        "title": "Minimalist Axe-Head Motif: Algorithmic Tiling Symmetry",
+        "alt": "Grid of axe-head shaped tiles in dark teal, orange, red and green, randomly rotated to form a mosaic",
+        "collection_ids": ["c02"],
+        "thumbnail_url": "assets/images/thumbs/art_012_thumb.webp",
+        "high_res_url": "assets/images/highres/art_012_full.webp",
+        "description": [
+          "The algorithm operates on a structured grid layout, generating a matrix of individual cells. ",
+          "Each cell renders the complex ~(i<<axe-head motif>>~)i geometric shape, ",
+          "precisely defined across multiple intersecting circular arcs. \n\n",
+          "The final visual artwork harmonizes mathematical rigor with controlled randomness. ",
+          "As the fundamental tile undergoes random rotations and draws colors from a rich, ",
+          "earthy palette, an organic mosaic emerges. ",
+          "The sweeping curves connect and interplay across adjacent cells, ",
+          "transforming a rigid grid into a fluid, mesmerizing pattern reminiscent", 
+          "of contemporary generative tiling art."
+        ]
+      },
+      {
+        "id": "art_013",
+        "display_tier": 20,
+        "tags": ["digital art", "mathematical art", "butterfly", "circular coordinates", "symmetry", "colorful"],
+        "title": "Butterfly, using transformations of <<Circular Coordinates>>",
+        "alt": "Symmetrical butterfly whose wings are made of rippling, multicolored curved stripes",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_013_thumb.webp",
+        "high_res_url": "assets/images/highres/art_013_full.webp",
+        "description": [
+          "This artwork captures a butterfly through the prism of an alternative geometric universe.\n",
+          "Its visual form is based on <<Circular Coordinates>>,",
+          "a theory introduced in the journal The Mathematics Teacher (1971)",
+          "and developed for computer designs by Tanis and Kuivinen in Mathematics Magazine (1979).\n",
+          "Unlike classical polar or spherical coordinates,",
+          "circular coordinates are not a simple polar transformation from radii and angles,",
+          "but a complex geometric system based on families of circles.\n\n",
+          "~(iThe Axes~)i: There are two orthogonal axes, U and V.\n",
+          "~(iGeometric Construction~)i: Each point on the axes acts as the center of a circle",
+          "that necessarily passes through the origin (0,0).\n",
+          "~(iPoint Definition~)i: A point (u,v) in the new system is defined as the intersection of the circle",
+          "whose center is located at u on the horizontal axis with the circle",
+          "whose center is located at v on the vertical axis.\n\n",
+          "Through this mathematical transformation function,",
+          "the natural symmetry of the butterfly is reconstructed,",
+          "blending rigorous geometry with organic art.\n",
+          "To compose complex and symmetrical designs,",
+          "such as the form of a butterfly, families of curves are utilized.\n",
+          "By adding a constant c to a simple function g(u), that is \n",
+          "~(i   f(u) = g(u) + c ~)i \n",
+          "and applying the algebraic transformation of circular coordinates,",
+          "straight lines morph organically,",
+          "producing striking, kaleidoscopic geometric patterns."
+        ]
+      },
+      {
+        "id": "art_014",
+        "display_tier": 40,
+        "tags": ["digital art", "mathematical art", "circles", "spiral", "geometric", "colorful"],
+        "title": "Tangent circles with holes",
+        "alt": "Spiral of internally tangent circles in green, orange, yellow, teal and pink, shrinking toward a small blue dot",
+        "collection_ids": ["c02"],
+        "thumbnail_url": "assets/images/thumbs/art_014_thumb.webp",
+        "high_res_url": "assets/images/highres/art_014_full.webp",
+        "description": [
+          "This digital artwork is built on a precise geometric sequence of internally", 
+          "tangent circles, with each consecutive radius decreasing by a fixed factor.", 
+          "The mathematical complexity deepens as the tangency point of each circle shifts", 
+          "spirally by ~45 degrees from the previous one, generating a dynamic rotational trajectory\n\n",
+          "Visually, this minimal composition comes alive through a vibrant, curated color palette ",
+          "featuring hues like limegreen, orange, and gold, contrasted by every third circle being transparent.", 
+          "The result is a hypnotic interplay of depth and transparency, where rigid ",
+          "geometry transforms into a fluid, multi-layered visual experience."
+        ]
+      },
+      {
+        "id": "art_015",
+        "display_tier": 20,
+        "tags": ["digital art", "generative art", "voronoi", "mosaic", "organic", "colorful"],
+        "title": "Organic Curved Voronoi Mosaic Pattern (no 51A2)",
+        "alt": "Abstract mosaic of curved tiles in orange, green and blue, separated by pale turquoise borders",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_015_thumb.webp",
+        "high_res_url": "assets/images/highres/art_015_full.webp",
+        "description": [
+          "The artwork is based on the mathematical structure of Voronoi diagrams, transforming", 
+          "the conventional geometry of polygonal tiles into a system of curved regions. ",
+          "The original geometric boundaries are smoothed using a Gaussian filter, producing", 
+          "fluid curves and naturally rounded connections between neighboring areas. \n\n",
+          "Visually, the result resembles an abstract mosaic of organic, flowing tiles. ",
+          "The curved joints create a sense of continuous movement, while the multicolored palette", 
+          "combines warm and cool tones, giving the composition balance, depth, rhythm, and visual energy."
+        ]
+      },
+      {
+        "id": "art_016",
+        "display_tier": 20,
+        "tags": ["digital art", "generative art", "voronoi", "mosaic", "minimalist", "monochrome"],
+        "title": "Minimalist Organic Charcoal Voronoi Abstract Geometry (no 67M1)",
+        "alt": "Abstract mosaic of curved tiles in shades from charcoal to near white, separated by soft gray borders",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_016_thumb.webp",
+        "high_res_url": "assets/images/highres/art_016_full.webp",
+        "description": [
+          "Rooted in the mathematical logic of Voronoi diagrams, the work transforms a precise", 
+          "geometric structure into an organic, almost fluid landscape. ",
+          "Its boundaries are softened through Gaussian smoothing, allowing the underlying", 
+          "geometry to acquire a sense of continuity, softness, and natural movement.\n\n",
+          "Spanning a palette from deep charcoal to near white, the curved surfaces ",
+          "create a quiet interplay of light and shadow. ",
+          "The composition balances order and freedom, resembling an abstract mosaic ",
+          "that seems to shift and transform continuously, inviting the eye ",
+          "to wander through its flowing network of forms."
+        ]
+      },
+      {
+        "id": "art_017",
+        "display_tier": 10,
+        "tags": ["digital art", "generative art", "fractal", "julia set", "magma", "purple"],
+        "title": "Magma Julia Fractal Chaos Art (seed 99319)",
+        "alt": "Julia set fractal with purple spirals glowing against a black background, with bright pink-orange centers",
+        "collection_ids": ["c03"],
+        "thumbnail_url": "assets/images/thumbs/art_017_thumb.webp",
+        "high_res_url": "assets/images/highres/art_017_full.webp",
+        "description": [
+          "This digital composition depicts a Julia set fractal,",
+          "which is based on the iterative application of complex functions.",
+          "For this specific artwork, the classic equation form\n",
+          "    ~(i f(z) = z^2 + c ~)i was used.\n",
+          "It is worth noting that beyond this baseline formula, the field includes other",
+          "mathematical variations, such as alternating between different",
+          "constants (c1 and c2), raising to higher powers, or incorporating trigonometric functions.\n\n",
+          "The visual structure develops into symmetric spirals around two main centers,",
+          "with smaller, self-similar substructures repeating infinitely.",
+          "The magma color palette was applied for the visualization.",
+          "Deep black and purple dominate the artwork, while the centers of the spirals are highlighted",
+          "with bright colors, showcasing the system's convergence points."
+        ]
+      }
+    ]
+  }
+}

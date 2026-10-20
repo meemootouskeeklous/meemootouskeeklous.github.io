@@ -1,0 +1,49 @@
+# --- Crawlers που συλλέγουν περιεχόμενο για εκπαίδευση AI: αποκλείονται ---
+# (αίτημα, όχι τείχος: το τηρούν μόνο όσοι θέλουν. Η λίστα θέλει περιοδικό έλεγχο.)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+# --- Όλοι οι υπόλοιποι (μηχανές αναζήτησης κλπ): επιτρέπονται ---
+User-agent: *
+Allow: /
+
+Sitemap: https://meemootouskeeklous.github.io/sitemap.xml

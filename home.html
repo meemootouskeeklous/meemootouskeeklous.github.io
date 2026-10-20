@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mee Moo Tous Keeklous — Digital &amp; Generative Art</title>
+    <meta name="description" content="Digital and generative art by Mee Moo Tous Keeklous: equations, algorithms and code transformed into images full of colour, rhythm and harmony.">
+    <meta name="author" content="Mee Moo Tous Keeklous">
+    <!-- v06: αίτημα προς crawlers να μην χρησιμοποιούν το περιεχόμενο για εκπαίδευση AI (δεν επηρεάζει την κανονική ευρετηρίαση) -->
+    <meta name="robots" content="noai, noimageai">
+    <meta name="theme-color" content="#2F4F4F">
+
+    <!-- Εικονίδια (favicon από το avatar) -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph: πώς εμφανίζεται ο σύνδεσμος όταν τον μοιράζονται (Facebook, WhatsApp, Viber, κλπ) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mee Moo Tous Keeklous">
+    <meta property="og:title" content="Mee Moo Tous Keeklous — Digital &amp; Generative Art">
+    <meta property="og:description" content="Digital and generative art by Mee Moo Tous Keeklous: equations, algorithms and code transformed into images full of colour, rhythm and harmony.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://meemootouskeeklous.github.io/home.html">
+    <meta property="og:image" content="https://meemootouskeeklous.github.io/assets/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="canonical" href="https://meemootouskeeklous.github.io/home.html">
+    <!-- v05: JSON-LD Person (στατικό). Αν αλλάξει το όνομα/κείμενο παρουσίασης, ενημέρωσε και αυτό. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mee Moo Tous Keeklous",
+      "url": "https://meemootouskeeklous.github.io/home.html",
+      "image": "https://meemootouskeeklous.github.io/assets/images/avatar.webp",
+      "jobTitle": "Digital and generative artist",
+      "description": "Amateur artist creating digital and generative art, born in Greece, with a background in mathematics and programming.",
+      "birthPlace": { "@type": "Country", "name": "Greece" },
+      "knowsAbout": ["Digital art", "Generative art", "Mathematics", "Programming"]
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <noscript>
+        <p style="padding:12px 20px; font-family:Arial,sans-serif;">
+            <strong>Mee Moo Tous Keeklous</strong> &mdash; digital &amp; generative art<br>
+            <a href="home.html">Home</a> | <a href="my-art.html">My Art</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+        </p>
+        <p style="padding:0 20px; font-family:Arial,sans-serif;">I am an amateur artist creating digital and generative art. I use mathematics as my brush: equations, algorithms and code are transformed into images full of colour, rhythm and harmony. I was born in Greece, studied mathematics and worked for years as a programmer.</p>
+        <p style="padding:0 20px; font-family:Arial,sans-serif;"><em>Please enable JavaScript to see the full site.</em></p>
+    </noscript>
+
+    <!-- Σταθερό Header + hero-banner . πριν το Κεντρικό Περιεχόμενο -->
+    <div id="globalheader-placeholder"></div>
+
+    <!-- Κεντρικό Περιεχόμενο (Αρχική Σελίδα) -->
+    <main id="main-content">
+        <section class="home-intro">
+            <p id="elevator-pitch"></p>
+            <a href="about.html" id="about-btn" class="btn"></a>
+        </section>
+        
+        <section class="selected-works">
+            <h2 id="selected-works-title"></h2>
+            <div id="home-works-grid" class="art-grid">
+                <!-- Εδώ θα φορτωθούν τα 3-4 high-res επιλεγμένα έργα -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal (ίδιο με το My Art) -->
+    <div id="lightbox" class="lightbox hidden">
+        <span id="close-lightbox" class="close-btn" title="Close (Esc)">&times;</span>
+        <button id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Previous artwork">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Next artwork">&#10095;</button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-image-wrap">
+                <img id="lightbox-img" src="" alt="High Resolution Artwork">
+                <div id="lightbox-loading" class="lightbox-loading hidden">Loading&hellip;</div>
+            </div>
+            <div class="lightbox-info">
+                <h3 id="lightbox-title" class="lightbox-title"></h3>
+                <div id="lightbox-text" class="lightbox-desc"></div>
+                <div id="lightbox-counter" class="lightbox-counter"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- v06: Footer με δήλωση πνευματικής ιδιοκτησίας -->
+    <footer class="site-footer">
+        &copy; 2026 Mee Moo Tous Keeklous. All rights reserved. The artworks on this site may not be copied, reproduced or used without written permission.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
