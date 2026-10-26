@@ -16,6 +16,18 @@ function addJsonLd(obj) {
     document.head.appendChild(tag);
 }
 
+// v19: Διαδρομές εικόνων. Στο portfolio ορίζονται οι φάκελοι "thumbnail_folder" και "high_res_folder",
+// και σε κάθε έργο γράφεται μόνο το όνομα αρχείου. Αν μια τιμή περιέχει ήδη "/" (πλήρης διαδρομή ή http...),
+// χρησιμοποιείται όπως είναι.
+function imageUrl(kind, value) {
+    if (!value) return '';
+    if (String(value).includes('/')) return value;
+    const p = (typeof globalData !== 'undefined' && globalData && globalData.portfolio) || {};
+    let folder = (kind === 'thumb' ? p.thumbnail_folder : p.high_res_folder) || '';
+    if (folder && !folder.endsWith('/')) folder += '/';
+    return folder + value;
+}
+
 // v12: Συλλογές. Κάθε έργο έχει "collection_ids": ["c01", ...] (λίστα, ώστε να ανήκει σε περισσότερες συλλογές).
 // Οι τίτλοι των συλλογών ορίζονται μία φορά στο portfolio.collections: [{ collection_id, collection_title }]
 function artCollectionIds(art) {
@@ -43,8 +55,8 @@ function addArtworkJsonLd(data) {
         "@type": "VisualArtwork",
         "name": art.title,
         "description": plainText(art.description, " "),
-        "image": SITE_URL + "/" + art.high_res_url,
-        "thumbnailUrl": SITE_URL + "/" + art.thumbnail_url,
+        "image": SITE_URL + "/" + imageUrl('full', art.high_res_url),
+        "thumbnailUrl": SITE_URL + "/" + imageUrl('thumb', art.thumbnail_url),
         "artform": "Digital art",
         "artMedium": "Digital",
         "creator": { "@type": "Person", "name": data.site_config.artist_name }
@@ -342,6 +354,9 @@ function buildHomePage(data) {
 
     // Lightbox
     setupLightbox();
+
+    // v19: σύνδεσμος σε έργο (home.html#art_013), μέσα στα επιλεγμένα έργα
+    bindLightboxHash(selectedArts);
 }
 
 function buildAboutPage(data) {
@@ -456,6 +471,46 @@ function buildMyArtPage(data) {
     
     // 3. Στήσιμο του Lightbox Modal
     setupLightbox();
+
+    // 4. v18: αν η διεύθυνση έχει #art_xxx, ανοίγει κατευθείαν αυτό το έργο
+    bindLightboxHash(data.portfolio.artworks, () => {
+        // το φίλτρο γυρίζει σε "All", ώστε η λίστα του lightbox να ταιριάζει με το grid
+        document.querySelectorAll('.filter-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+        renderGrid('All', data.portfolio.artworks);
+    });
+}
+
+// v19: ανοίγει το lightbox από το #art_xxx της διεύθυνσης (και όταν αλλάζει το #). list = τα έργα της σελίδας.
+function bindLightboxHash(list, beforeOpen) {
+    function openFromHash() {
+        let id = '';
+        try { id = decodeURIComponent(window.location.hash.replace(/^#/, '')); } catch (e) { id = ''; }
+        if (!id) {
+            if (isLightboxOpen()) closeLightbox();
+            return;
+        }
+        const index = list.findIndex(a => a.id === id);
+        if (index === -1) {
+            // v20: το έργο δεν είναι στη λίστα αυτής της σελίδας
+            const onHome = !!document.getElementById('home-works-grid');
+            const all = (globalData && globalData.portfolio && globalData.portfolio.artworks) || [];
+            if (onHome && all.some(a => a.id === id)) {
+                // υπάρχει, αλλά δεν είναι από τα επιλεγμένα της αρχικής -> το ανοίγουμε στο My Art
+                window.location.replace('my-art.html#' + encodeURIComponent(id));
+            } else if (onHome) {
+                // δεν υπάρχει (ή είναι κρυφό): μένουμε στην αρχική, χωρίς το #
+                setArtworkHash('');
+            } else {
+                // δεν υπάρχει (ή είναι κρυφό): πάμε στην αρχική
+                window.location.replace('home.html');
+            }
+            return;
+        }
+        if (beforeOpen) beforeOpen();
+        openLightbox(list, index);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
 }
 
 // Συνάρτηση που "ζωγραφίζει" τα thumbnails στο grid
@@ -490,6 +545,7 @@ function closeLightbox() {
     lightbox.classList.add('hidden');
     document.body.style.overflow = '';
     lightboxToken++; // ακυρώνει τυχόν εκκρεμή φόρτωση
+    setArtworkHash('');
 }
 
 function setupLightbox() {
@@ -551,8 +607,18 @@ function openLightbox(list, index) {
     showLightboxArtwork();
 }
 
+// v18/v19: σύνδεσμος σε συγκεκριμένο έργο (my-art.html#art_013 ή home.html#art_013). Ενημερώνεται η διεύθυνση της τρέχουσας σελίδας.
+function setArtworkHash(id) {
+    if (!document.getElementById('lightbox')) return;
+    try {
+        const url = window.location.pathname + window.location.search + (id ? '#' + id : '');
+        history.replaceState(null, '', url);   // replaceState: δεν γεμίζει το ιστορικό του browser
+    } catch (e) { /* αγνοείται (π.χ. περιορισμοί του browser) */ }
+}
+
 function showLightboxArtwork() {
     const art = lightboxList[lightboxIndex];
+    if (art && art.id) setArtworkHash(art.id);
     const img = document.getElementById('lightbox-img');
     const loading = document.getElementById('lightbox-loading');
     const token = ++lightboxToken;
@@ -582,22 +648,22 @@ function showLightboxArtwork() {
                 img.style.setProperty('--ar', probe.naturalWidth / probe.naturalHeight);
             }
         };
-        probe.src = art.thumbnail_url;
+        probe.src = imageUrl('thumb', art.thumbnail_url);
     }
 
     // Πρώτα το thumbnail (θολό) + ένδειξη Loading, μέχρι να φορτώσει η high-res
-    img.src = art.thumbnail_url;
+    img.src = imageUrl('thumb', art.thumbnail_url);
     img.classList.add('loading');
     loading.classList.remove('hidden');
 
     const full = new Image();
     full.onload = full.onerror = () => {
         if (token !== lightboxToken) return; // στο μεταξύ άλλαξε το έργο
-        img.src = art.high_res_url;
+        img.src = imageUrl('full', art.high_res_url);
         img.classList.remove('loading');
         loading.classList.add('hidden');
     };
-    full.src = art.high_res_url;
+    full.src = imageUrl('full', art.high_res_url);
 }
 
 // list = η λίστα έργων μέσα στην οποία πλοηγείται το lightbox
@@ -607,7 +673,7 @@ function createArtworkCard(art, list) {
 
     // Thumbnail
     const img = document.createElement('img');
-    img.src = art.thumbnail_url;
+    img.src = imageUrl('thumb', art.thumbnail_url);
     img.alt = art.alt || art.title;
     // v04: αν υπάρχουν οι διαστάσεις του thumbnail στο data.json, κρατάμε τον χώρο πριν φορτώσει η εικόνα (αποφεύγει τα "πηδήματα")
     if (art.thumb_width && art.thumb_height) {
