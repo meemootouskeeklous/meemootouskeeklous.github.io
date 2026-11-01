@@ -80,9 +80,14 @@
     },
     "contact": {
       "email": "meemootouskeeklous@gmail.com",
-      "message": "Feel free to reach out for collaborations or just to say hi!",
+      "message": [
+        "Every creative journey starts with a simple conversation.\n",
+        "Whether you have a question about my work, an idea to share, or you simply liked one of my pieces, I’m always happy to hear from you.\n",
+        "Drop me a message — I usually reply within a few days."
+      ],
       "shops": [
         { "text": "Prints & products on Redbubble", "url": "https://www.redbubble.com/shop/molivi", "hidden": false },
+        { "text": "Prints on Pictorem", "url": "https://meemootouskeeklous.pictorem.com", "hidden": false },
         { "text": "Society6", "url": "https://society6.com/meemootouskeeklous", "hidden": true }
       ]
     }

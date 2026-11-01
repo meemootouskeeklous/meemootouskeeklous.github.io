@@ -140,7 +140,7 @@ body {
     border-radius: 3px;
 }
 
-.shops { display: flex; flex-wrap: wrap; gap: 0 12px; }
+.shops { display: flex; flex-direction: column; align-items: flex-start; } /* v21: ένα κουμπί ανά γραμμή */
 
 /* v16: κουμπί <button> με την ίδια εμφάνιση του .btn + δευτερεύον στυλ */
 button.btn {
