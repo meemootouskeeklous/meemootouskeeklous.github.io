@@ -81,9 +81,12 @@
     "contact": {
       "email": "meemootouskeeklous@gmail.com",
       "message": [
-        "Every creative journey starts with a simple conversation.\n",
-        "Whether you have a question about my work, an idea to share, or you simply liked one of my pieces, I’m always happy to hear from you.\n",
-        "Drop me a message — I usually reply within a few days."
+        "Every creative journey starts with a simple conversation. \n",
+        "Whether you have a question about my work, an idea to share, ", 
+        "or you simply liked one of my pieces, it is always a pleasure to connect.\n", 
+        "There is always an openness to collaborative projects and a keen interest in finding dedicated ", 
+        "environments where code, math, and visual expression can be shared with a wider audience. \n",
+        "Drop me a message — replies usually go out within a few days."
       ],
       "shops": [
         { "text": "Prints & products on Redbubble", "url": "https://www.redbubble.com/shop/molivi", "hidden": false },
