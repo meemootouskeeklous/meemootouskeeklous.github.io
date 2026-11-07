@@ -28,6 +28,16 @@ function imageUrl(kind, value) {
     return folder + value;
 }
 
+// v22: Σειρές έργων. Στο portfolio.series ορίζονται { series_id, series_title, series_description }
+// και κάθε έργο μπορεί να έχει ένα προαιρετικό "series_id".
+function artSeries(art) {
+    if (!art || art.series_id === undefined || art.series_id === null || art.series_id === '') return null;
+    const list = (typeof globalData !== 'undefined' && globalData && globalData.portfolio && globalData.portfolio.series) || [];
+    const found = list.find(s => String(s.series_id) === String(art.series_id));
+    if (!found) console.warn(`Το έργο ${art.id} έχει άγνωστο series_id: ${art.series_id}`);
+    return found || null;
+}
+
 // v12: Συλλογές. Κάθε έργο έχει "collection_ids": ["c01", ...] (λίστα, ώστε να ανήκει σε περισσότερες συλλογές).
 // Οι τίτλοι των συλλογών ορίζονται μία φορά στο portfolio.collections: [{ collection_id, collection_title }]
 function artCollectionIds(art) {
@@ -62,6 +72,8 @@ function addArtworkJsonLd(data) {
         "creator": { "@type": "Person", "name": data.site_config.artist_name }
         };
         if (genres.length) obj.genre = genres.length === 1 ? genres[0] : genres;
+        const series = artSeries(art);
+        if (series && series.series_title) obj.isPartOf = { "@type": "CreativeWorkSeries", "name": series.series_title };
         // v13: προαιρετικό πεδίο "tags": ["fractal", "gold"] -> keywords στο JSON-LD (δεν εμφανίζεται στη σελίδα)
         const tags = [...new Set((Array.isArray(art.tags) ? art.tags : [])
             .map(t => String(t).trim()).filter(Boolean))];
@@ -625,6 +637,10 @@ function showLightboxArtwork() {
 
     document.getElementById('lightbox-title').innerText = art.title || '';
     document.getElementById('lightbox-text').innerHTML = richHtml(art.description, ' ');
+    // v22: σειρά (αν το έργο ανήκει σε σειρά): υπότιτλος + περιγραφή σειράς
+    const series = artSeries(art);
+    document.getElementById('lightbox-series').innerText = (series && series.series_title) ? 'Series: ' + series.series_title : '';
+    document.getElementById('lightbox-series-text').innerHTML = (series && series.series_description) ? richHtml(series.series_description, ' ') : '';
     document.getElementById('lightbox-counter').innerText = (lightboxIndex + 1) + ' / ' + lightboxList.length;
     img.alt = art.alt || art.title || 'Artwork';
 

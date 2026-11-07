@@ -7,6 +7,8 @@
   "_help_collections3": "Το κουμπί <All> προστίθεται αυτόματα. Συλλογή χωρίς ορατά έργα δεν εμφανίζεται.",
   "_help_images1": "Εικόνες: οι φάκελοι ορίζονται στο portfolio (thumbnail_folder, high_res_folder). Σε κάθε έργο γράφεται μόνο το όνομα αρχείου.",
   "_help_images2": "Αν μια τιμή περιέχει ήδη / (πλήρης διαδρομή), χρησιμοποιείται όπως είναι.",
+  "_help_series1": "Σειρές: ορίζονται στο portfolio.series (series_id, series_title, series_description). Ένα έργο ανήκει προαιρετικά σε μία σειρά: <series_id>: <s01>.",
+  "_help_series2": "Στο lightbox φαίνονται ο τίτλος της σειράς (κάτω από τον τίτλο του έργου) και η περιγραφή της (μετά την περιγραφή του έργου). Η περιγραφή δέχεται την ίδια μορφοποίηση.",
   "_help_tags1": "Tags (προαιρετικό): σε κάθε έργο <tags>: [<fractal>, <gold>] (αγγλικά, πεζά, 3-6).",
   "_help_tags2": "Μπαίνουν ως keywords στα δομημένα δεδομένα (SEO) και δεν εμφανίζονται στη σελίδα.",
   "_help_text01_formatting": "Μορφοποίηση κειμένου (elevator_pitch, full_story, message, περιγραφές έργων):",
@@ -46,7 +48,7 @@
       ],
       "about_button_text": "Read my full story",
       "selected_works_title": "Selected Works",
-      "selected_works_ids": ["art_013", "art_009", "art_015", "art_017"]
+      "selected_works_ids": ["art_013", "art_009", "art_015", "art_017", "art_018d"]
     },
     "about": {
       "full_story": [
@@ -101,7 +103,22 @@
     "collections": [
       { "collection_id": "c01", "collection_title": "early works" },
       { "collection_id": "c02", "collection_title": "minimal artworks" },
-      { "collection_id": "c03", "collection_title": "chaos and symmetry" }
+      { "collection_id": "c03", "collection_title": "chaos and symmetry" },
+      { "collection_id": "c04", "collection_title": "NYX I" }
+    ],
+    "series": [
+      {
+        "series_id": "s01",
+        "series_title": "NYX I",
+        "series_description": [
+          "~(bNYX~)b explores how color alone can reshape our perception of a mathematical form that never changes. ",
+          "Its starting point is a twisted take on the Julia set: before the iteration begins, every complex number ",
+          "is passed through a transforming function, bending the familiar structure into something new.\n\n",
+          "~(bNYX I~)b brings together six works drawn from a single mathematical universe: the same function, ",
+          "the same parameters, the same seed. Only the color changes — three palettes and their inversions — ",
+          "and with it, the way the structure is seen."
+        ]
+      }
     ],
     "artworks": [
       {
@@ -155,7 +172,7 @@
         "id": "art_003",
         "display_tier": 60,
         "tags": ["digital art", "mathematical art", "archimedean spiral", "parametric curve", "rotational symmetry", "colorful"],
-        "title": "Mathematical quadruple tweaked Archimedean spiral",
+        "title": "Mathematical quadruple twisted Archimedean spiral",
         "alt": "Four overlapping curved shapes in red, green, blue and orange, each made of many fine parallel lines and rotated by 90 degrees",
         "collection_ids": ["c01"],
         "thumbnail_url": "art_003_thumb.webp",
@@ -479,6 +496,110 @@
           "The magma color palette was applied for the visualization.",
           "Deep black and purple dominate the artwork, while the centers of the spirals are highlighted",
           "with bright colors, showcasing the system's convergence points."
+        ]
+      },
+      {
+        "id": "art_018a",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "purple", "nebula"],
+        "title": "The violet twilight",
+        "alt": "Twisted Julia set fractal with purple spirals glowing against a black background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018a_thumb.webp",
+        "high_res_url": "art_018a_full.webp",
+        "description": [
+          "The structure sinks into near-black while only its finest filaments glow violet.\n", 
+          "Depth becomes the subject: the spirals read as nebulae drifting in a night sky, ",
+          "and the brightest cores pull the eye inward, from the void toward the light. \n",
+          "A dark, nocturnal presence, where color is less a surface than an atmosphere."
+        ]
+      },
+      {
+        "id": "art_018b",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "blue", "ocean"],
+        "title": "Starry Cobalt Solitude",
+        "alt": "Twisted Julia set fractal with electric blue whirlpools on a deep cobalt background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018b_thumb.webp",
+        "high_res_url": "art_018b_full.webp",
+        "description": [
+          "Blue floods the composition, from deep cobalt shadows to electric cyan ",
+          "and turquoise highlights. \n",
+          "Color here suggests water: the spirals read as whirlpools and ocean currents, ",
+          "cool and restless, with light gathering at the center of each vortex and guiding the eye deeper. \n",
+          "Immersive, luminous and full of movement, like a dive into the deep."
+        ]
+      },
+      {
+        "id": "art_018c",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "monochrome", "smoke"],
+        "title": "Moon Behind the Mist",
+        "alt": "Twisted Julia set fractal with grey monochrome spirals emerging from a black background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018c_thumb.webp",
+        "high_res_url": "art_018c_full.webp",
+        "description": [
+          "Color is removed altogether and only brightness remains. \n",
+          "The spirals emerge from deep black like smoke and ash, and the eye turns to texture, ",
+          "edges and the finest gradations of grey. \n",
+          "A silent, almost cinematic study of how much of a form’s character lives in color, ",
+          "and what is left when it disappears."
+        ]
+      },
+      {
+        "id": "art_018d",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "coral", "sunrise"],
+        "title": "Coral Dawn",
+        "alt": "Twisted Julia set fractal with coral and peach spirals on a pale cream background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018d_thumb.webp",
+        "high_res_url": "art_018d_full.webp",
+        "description": [
+          "The void gives way to a gentle light. A pale cream ground carries the spirals, ",
+          "now delicate coral and peach filigree, closer to lace than to nebulae. \n",
+          "Soft, airy and quiet, the work feels like the first light of a new morning ",
+          "over still water, where color becomes warmth rather than depth."
+        ]
+      },
+      {
+        "id": "art_018e",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "fire", "vortex"],
+        "title": "Burning Night Sky",
+        "alt": "Twisted Julia set fractal with orange and yellow spirals blazing on a deep crimson background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018e_thumb.webp",
+        "high_res_url": "art_018e_full.webp",
+        "description": [
+          "Deep crimson fills the ground, and the spirals burn orange and molten ",
+          "yellow at the heart of each vortex.\n",
+          "Color here suggests fire: the currents read as flames, warm and urgent, with strong contrast and heat. \n",
+          "Energetic, dramatic and alive, the work seems to glow from within, like embers that refuse to die."
+        ]
+      },
+      {
+        "id": "art_018f",
+        "display_tier": 10,
+        "tags": ["generative art", "fractal", "julia set", "nyx", "white", "graphite"],
+        "title": "Frosty Full Moon",
+        "alt": "Twisted Julia set fractal with fine graphite-grey spirals on a white background, from the NYX I series.",
+        "collection_ids": ["c04"],
+        "series_id": "s01",
+        "thumbnail_url": "art_018f_thumb.webp",
+        "high_res_url": "art_018f_full.webp",
+        "description": [
+          "Pale and luminous, the greys settle into a field of white. \n",
+          "The spirals appear as fine graphite lines, like a pencil study or ",
+          "frost on a windowpane: delicate, calm, almost hand-drawn. \n",
+          "Light, airy and quiet, the work offers a minimal reading of the form, where line and silence replace color."
         ]
       }
     ]

@@ -427,6 +427,28 @@ button.btn {
     line-height: 1.6;
 }
 
+/* v22: σειρά έργων (υπότιτλος + περιγραφή σειράς) */
+.lightbox-series {
+    margin: -2px 0 10px;
+    color: #bbb;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.lightbox-series-text {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #555;
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.lightbox-series:empty,
+.lightbox-series-text:empty {
+    display: none;
+}
+
 .lightbox-counter {
     margin-top: 12px;
     color: #888;
