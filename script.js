@@ -38,6 +38,20 @@ function artSeries(art) {
     return found || null;
 }
 
+// v24: Λειτουργία προεπισκόπησης: με ?preview=1 στη διεύθυνση (π.χ. my-art.html?preview=1) εμφανίζονται και τα
+// έργα με "hidden": true (με ένδειξη HIDDEN). Η λειτουργία μένει ενεργή στην ίδια καρτέλα (sessionStorage)
+// μέχρι να δοθεί ?preview=0 ή να κλείσει η καρτέλα. ΠΡΟΣΟΧΗ: δεν είναι προστασία - το data.json είναι δημόσιο.
+function isPreviewMode() {
+    const param = new URLSearchParams(window.location.search).get('preview');
+    try {
+        if (param === '1') sessionStorage.setItem('mm_preview', '1');
+        else if (param === '0') sessionStorage.removeItem('mm_preview');
+        return sessionStorage.getItem('mm_preview') === '1';
+    } catch (e) {
+        return param === '1';
+    }
+}
+
 // v12: Συλλογές. Κάθε έργο έχει "collection_ids": ["c01", ...] (λίστα, ώστε να ανήκει σε περισσότερες συλλογές).
 // Οι τίτλοι των συλλογών ορίζονται μία φορά στο portfolio.collections: [{ collection_id, collection_title }]
 function artCollectionIds(art) {
@@ -58,7 +72,7 @@ function collectionTitleMap(data) {
 function addArtworkJsonLd(data) {
     if (!siteUrlIsSet()) return;
     const titles = collectionTitleMap(data);
-    const artworks = data.portfolio.artworks.map(art => {
+    const artworks = data.portfolio.artworks.filter(a => a.hidden !== true).map(art => {
         const genres = artCollectionIds(art).map(id => titles[id]).filter(Boolean);
         const obj = {
         "@context": "https://schema.org",
@@ -208,10 +222,20 @@ async function initSite() {
         if (globalData.portfolio && Array.isArray(globalData.portfolio.artworks)) {
             sortArtworks(globalData.portfolio.artworks);
             // v10: έργα με "hidden": true αφαιρούνται από παντού (My Art, αρχική, lightbox, JSON-LD)
-            globalData.hiddenIds = new Set(
-                globalData.portfolio.artworks.filter(a => a.hidden === true).map(a => a.id)
-            );
-            globalData.portfolio.artworks = globalData.portfolio.artworks.filter(a => a.hidden !== true);
+            // v24: εκτός αν είναι ενεργή η λειτουργία προεπισκόπησης (?preview=1)
+            globalData.previewMode = isPreviewMode();
+            if (globalData.previewMode) {
+                globalData.hiddenIds = new Set();
+                const banner = document.createElement('div');
+                banner.className = 'preview-banner';
+                banner.innerText = 'Preview mode: hidden works are visible (use ?preview=0 to exit)';
+                document.body.appendChild(banner);
+            } else {
+                globalData.hiddenIds = new Set(
+                    globalData.portfolio.artworks.filter(a => a.hidden === true).map(a => a.id)
+                );
+                globalData.portfolio.artworks = globalData.portfolio.artworks.filter(a => a.hidden !== true);
+            }
         }
 
         // v05: γενικό φόντο των έργων (για εικόνες με διαφάνεια), όταν ένα έργο δεν ορίζει δικό του
@@ -557,8 +581,121 @@ function closeLightbox() {
     lightbox.classList.add('hidden');
     document.body.style.overflow = '';
     lightboxToken++; // ακυρώνει τυχόν εκκρεμή φόρτωση
+    lightboxZoom.reset();
     setArtworkHash('');
 }
+
+// v24: Zoom στην εικόνα του lightbox.
+// Κλικ/πάτημα = μεγέθυνση στο σημείο (και ξανά κλικ = επαναφορά). Ρόδα ποντικιού ή pinch = συνεχής μεγέθυνση.
+// Με μεγέθυνση, το σύρσιμο μετακινεί την εικόνα. Esc ή αλλαγή έργου = επαναφορά.
+const lightboxZoom = (function () {
+    let scale = 1, tx = 0, ty = 0;
+    let img = null, wrap = null;
+    const pointers = new Map();            // ενεργά δάχτυλα/δείκτης
+    let dragMoved = 0, startDist = 0, startScale = 1;
+
+    function maxScale() {
+        const disp = img.offsetWidth || 1;
+        const nat = img.naturalWidth || disp;
+        return Math.min(6, Math.max(2.5, nat / disp));   // μέχρι το πραγματικό μέγεθος της εικόνας (τουλάχιστον 2.5x)
+    }
+    function clamp() {
+        const maxX = (scale - 1) * img.offsetWidth / 2;
+        const maxY = (scale - 1) * img.offsetHeight / 2;
+        tx = Math.max(-maxX, Math.min(maxX, tx));
+        ty = Math.max(-maxY, Math.min(maxY, ty));
+    }
+    function apply() {
+        if (scale <= 1.001) { scale = 1; tx = 0; ty = 0; }
+        clamp();
+        img.style.transform = scale === 1 ? '' : `translate(${tx}px, ${ty}px) scale(${scale})`;
+        img.classList.toggle('zoomed', scale > 1);
+        wrap.classList.toggle('zoomed', scale > 1);
+    }
+    // μεγέθυνση προς newScale με σταθερό σημείο το (cx, cy) της οθόνης
+    function zoomAt(newScale, cx, cy) {
+        newScale = Math.max(1, Math.min(maxScale(), newScale));
+        const r = img.getBoundingClientRect();
+        const ox = r.left + r.width / 2, oy = r.top + r.height / 2;   // κέντρο της εικόνας (με το τρέχον transform)
+        const k = newScale / scale;
+        tx += (cx - ox) * (1 - k);
+        ty += (cy - oy) * (1 - k);
+        scale = newScale;
+        apply();
+    }
+    function canZoom() { return !img.classList.contains('loading'); }
+    function resetZoom() {
+        scale = 1; tx = 0; ty = 0;
+        if (img) { img.style.transform = ''; img.classList.remove('zoomed', 'dragging'); wrap.classList.remove('zoomed'); }
+        pointers.clear();
+    }
+
+    return {
+        isZoomed() { return scale > 1; },
+        reset: resetZoom,
+        init() {
+            img = document.getElementById('lightbox-img');
+            wrap = img && img.parentElement;
+            if (!img || !wrap) return;
+            img.draggable = false;
+            img.title = 'Click to zoom';
+
+            img.addEventListener('wheel', (e) => {
+                if (!canZoom()) return;
+                e.preventDefault();
+                zoomAt(scale * Math.exp(-e.deltaY * 0.002), e.clientX, e.clientY);
+            }, { passive: false });
+
+            img.addEventListener('pointerdown', (e) => {
+                if (!canZoom()) return;
+                img.setPointerCapture(e.pointerId);
+                pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+                dragMoved = 0;
+                if (pointers.size === 2) {
+                    const [a, b] = [...pointers.values()];
+                    startDist = Math.hypot(a.x - b.x, a.y - b.y);
+                    startScale = scale;
+                }
+            });
+            img.addEventListener('pointermove', (e) => {
+                const p = pointers.get(e.pointerId);
+                if (!p) return;
+                if (pointers.size === 2) {                         // pinch
+                    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+                    const [a, b] = [...pointers.values()];
+                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                    if (startDist) zoomAt(startScale * dist / startDist, (a.x + b.x) / 2, (a.y + b.y) / 2);
+                    dragMoved = 99;
+                } else if (scale > 1) {                            // σύρσιμο
+                    const dx = e.clientX - p.x, dy = e.clientY - p.y;
+                    dragMoved += Math.abs(dx) + Math.abs(dy);
+                    tx += dx; ty += dy;
+                    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+                    img.classList.add('dragging');
+                    apply();
+                }
+            });
+            const end = (e) => {
+                pointers.delete(e.pointerId);
+                img.classList.remove('dragging');
+                if (pointers.size < 2) startDist = 0;
+            };
+            img.addEventListener('pointerup', end);
+            img.addEventListener('pointercancel', end);
+
+            // κλικ (χωρίς σύρσιμο): μεγέθυνση στο σημείο ή επαναφορά
+            img.addEventListener('click', (e) => {
+                if (!canZoom() || dragMoved > 6) { dragMoved = 0; return; }
+                if (scale > 1) resetZoom();
+                else {
+                    const disp = img.offsetWidth || 1;
+                    const target = Math.min(maxScale(), Math.max(2, (img.naturalWidth || disp) / disp));
+                    zoomAt(target, e.clientX, e.clientY);
+                }
+            });
+        }
+    };
+})();
 
 function setupLightbox() {
     const lightbox = document.getElementById('lightbox');
@@ -580,18 +717,28 @@ function setupLightbox() {
     // Πληκτρολόγιο: Esc / βέλη
     document.addEventListener('keydown', (e) => {
         if (!isLightboxOpen()) return;
-        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'Escape') { if (lightboxZoom.isZoomed()) lightboxZoom.reset(); else closeLightbox(); }
         else if (e.key === 'ArrowLeft') showLightboxStep(-1);
         else if (e.key === 'ArrowRight') showLightboxStep(1);
     });
 
+    // v24: zoom στην εικόνα (κλικ / ρόδα / pinch + σύρσιμο)
+    lightboxZoom.init();
+
     // Swipe σε οθόνη αφής
     let touchX = 0, touchY = 0;
+    let multiTouch = false;
     lightbox.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 1) multiTouch = true;     // pinch: όχι swipe
+        else multiTouch = false;
         touchX = e.changedTouches[0].clientX;
         touchY = e.changedTouches[0].clientY;
     }, { passive: true });
     lightbox.addEventListener('touchend', (e) => {
+        if (multiTouch || lightboxZoom.isZoomed()) {       // v24: με zoom το σύρσιμο μετακινεί την εικόνα
+            if (e.touches.length === 0) multiTouch = false;
+            return;
+        }
         const dx = e.changedTouches[0].clientX - touchX;
         const dy = e.changedTouches[0].clientY - touchY;
         if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
@@ -630,6 +777,7 @@ function setArtworkHash(id) {
 
 function showLightboxArtwork() {
     const art = lightboxList[lightboxIndex];
+    lightboxZoom.reset();
     if (art && art.id) setArtworkHash(art.id);
     const img = document.getElementById('lightbox-img');
     const loading = document.getElementById('lightbox-loading');
@@ -713,6 +861,13 @@ function createArtworkCard(art, list) {
     });
 
     div.appendChild(img);
+    // v24: στη λειτουργία προεπισκόπησης, τα κρυφά έργα φαίνονται με ένδειξη
+    if (art.hidden === true) {
+        const badge = document.createElement('span');
+        badge.className = 'hidden-badge';
+        badge.innerText = 'HIDDEN';
+        div.appendChild(badge);
+    }
 
     // Title
     const title = document.createElement('div');

@@ -449,6 +449,61 @@ button.btn {
     display: none;
 }
 
+/* v24: zoom στην εικόνα του lightbox */
+#lightbox-img {
+    cursor: zoom-in;
+    touch-action: none;           /* το pinch/σύρσιμο το χειρίζεται το script, όχι ο browser */
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: center center;
+}
+
+#lightbox-img.zoomed {
+    cursor: grab;
+    transition: none;
+}
+
+#lightbox-img.dragging {
+    cursor: grabbing;
+}
+
+.lightbox-image-wrap.zoomed {
+    overflow: hidden;             /* η μεγεθυμένη εικόνα μένει μέσα στο πλαίσιό της */
+}
+
+/* v24: ένδειξη προεπισκόπησης (?preview=1) */
+.art-item {
+    position: relative;
+}
+
+.hidden-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 2px 8px;
+    background: #C2410C;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.preview-banner {
+    position: fixed;
+    left: 12px;
+    bottom: 12px;
+    z-index: 3000;
+    padding: 6px 12px;
+    background: #C2410C;
+    color: #fff;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    opacity: 0.92;
+    pointer-events: none;
+}
+
 .lightbox-counter {
     margin-top: 12px;
     color: #888;
