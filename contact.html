@@ -47,8 +47,11 @@
             <a id="contact-email" class="btn" href=""></a>
             <!-- v16: αντιγραφή διεύθυνσης (για όσους δεν έχουν ρυθμισμένο πρόγραμμα email) -->
             <button id="copy-email" class="btn btn-secondary" type="button">Copy address</button>
-            <!-- v11: καταστήματα (από data.json: pages.contact.shops) -->
-            <div id="contact-shops" class="shops"></div>
+            <!-- v25: καταστήματα (από data.json: pages.contact.shops, τίτλος: shops_title) -->
+            <div id="contact-shops-section" class="shops-section" hidden>
+                <h3 id="contact-shops-title" class="shops-title"></h3>
+                <div id="contact-shops" class="shops"></div>
+            </div>
 
             <!-- v07: Προς το παρόν δεν υπάρχουν social media. Όταν αποκτηθούν:
                  1) ξεσχολίασε το μπλοκ παρακάτω,

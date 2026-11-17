@@ -140,7 +140,13 @@ body {
     border-radius: 3px;
 }
 
-.shops { display: flex; flex-direction: column; align-items: flex-start; } /* v21: ένα κουμπί ανά γραμμή */
+/* v25: ενότητα καταστημάτων: τίτλος + grid (2 στήλες σε πλατιά οθόνη, 1 σε στενή) */
+.shops-section { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+.shops-section[hidden] { display: none; }
+.shops-title { margin: 0 0 4px; font-size: 1rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #666; }
+.shops { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 14px; max-width: 520px; }
+.btn.btn-shop { margin-left: 0; text-align: center; background: transparent; color: #313131; border: 1px solid #313131; padding: 9px 20px; }
+.btn.btn-shop:hover { background: #C2410C; border-color: #C2410C; color: #fff; }
 
 /* v16: κουμπί <button> με την ίδια εμφάνιση του .btn + δευτερεύον στυλ */
 button.btn {

@@ -90,10 +90,15 @@
         "environments where code, math, and visual expression can be shared with a wider audience. \n",
         "Drop me a message — replies usually go out within a few days."
       ],
+      "_help_shops": "shops_title = μικρός τίτλος πάνω από τα κουμπιά. Κάθε κατάστημα: text (ετικέτα κουμπιού), url, hidden (true = δεν εμφανίζεται). Η σειρά εμφάνισης = η σειρά στη λίστα.",
+      "shops_title": "Prints & Products",
       "shops": [
-        { "text": "Prints & products on Redbubble", "url": "https://www.redbubble.com/shop/molivi", "hidden": false },
-        { "text": "Prints on Pictorem", "url": "https://meemootouskeeklous.pictorem.com", "hidden": false },
-        { "text": "Society6", "url": "https://society6.com/meemootouskeeklous", "hidden": true }
+        { "text": "Redbubble", "url": "https://www.redbubble.com/shop/molivi", "hidden": false },
+        { "text": "Pictorem", "url": "https://meemootouskeeklous.pictorem.com", "hidden": false },
+        { "text": "Art Heroes", "url": "https://www.artheroes.com/en/shop-artworks/Mee-Moo-Tous-Keeklous/237250", "hidden": false },
+        { "text": "Displate", "url": "https://www.displate.com/meemootouskeeklous", "hidden": true },
+        { "text": "Curioos", "url": "https://www.curioos.com/", "hidden": true },
+        { "text": "Saatchi Art", "url": "https://www.saatchiart.com/", "hidden": true }
       ]
     }
   },
@@ -155,6 +160,7 @@
         "collection_ids": ["c01"],
         "thumbnail_url": "art_002_thumb.webp",
         "high_res_url": "art_002_full.webp",
+        "hidden": false,
         "description": [
           "In botany and mathematics, the term ~(b<phyllotaxis>~)b describes how nature arranges petals or seeds around a stem. ",
           "This phenomenon is modeled by Vogel's spiral, where each element is placed using the Golden Angle (137.5°) ",

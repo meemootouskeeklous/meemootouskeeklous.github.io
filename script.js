@@ -432,20 +432,24 @@ function buildContactPage(data) {
         });
     }
 
-    // v11: κατάστημα/καταστήματα (προαιρετικά) - pages.contact.shops: [{ text, url, hidden }]
+    // v25: καταστήματα - pages.contact.shops_title + shops: [{ text, url, hidden }]
     const shopsBox = document.getElementById('contact-shops');
+    const shopsSection = document.getElementById('contact-shops-section');
     if (shopsBox) {
         shopsBox.innerHTML = '';
         (data.pages.contact.shops || []).forEach(shop => {
             if (!shop || !shop.url || shop.hidden === true) return;
             const a = document.createElement('a');
-            a.className = 'btn';
+            a.className = 'btn btn-shop';
             a.href = shop.url;
             a.target = '_blank';
             a.rel = 'noopener';
             a.innerText = shop.text || shop.url;
             shopsBox.appendChild(a);
         });
+        const shopsTitle = document.getElementById('contact-shops-title');
+        if (shopsTitle) shopsTitle.innerText = data.pages.contact.shops_title || '';
+        if (shopsSection) shopsSection.hidden = shopsBox.children.length === 0;
     }
 
     // v07: το μπλοκ social links μπορεί να είναι σε σχόλιο στο contact.html (δεν υπάρχουν social προς το παρόν)
