@@ -52,6 +52,48 @@ function isPreviewMode() {
     }
 }
 
+// v26: Στατιστικά επισκεψιμότητας (GoatCounter): χωρίς cookies, χωρίς αποθήκευση IP.
+// Αν το GOATCOUNTER_ENDPOINT είναι κενό, δεν γίνεται καμία μέτρηση. Δεν μετράμε σε λειτουργία προεπισκόπησης (?preview=1).
+// Σε localhost / αρχείο (file://) δεν στέλνεται τίποτα: τα γεγονότα εμφανίζονται μόνο στην κονσόλα (F12) για έλεγχο.
+const GOATCOUNTER_ENDPOINT = 'https://meemootouskeeklous.goatcounter.com/count';
+let analyticsReady = false;
+let analyticsQueue = [];
+const analyticsDebug = ['localhost', '127.0.0.1', '[::1]', ''].includes(window.location.hostname);
+
+function loadAnalytics() {
+    if (!GOATCOUNTER_ENDPOINT || isPreviewMode() || analyticsDebug) return;
+    try {
+        window.goatcounter = { endpoint: GOATCOUNTER_ENDPOINT };
+        const s = document.createElement('script');
+        s.async = true;
+        s.dataset.goatcounter = GOATCOUNTER_ENDPOINT;
+        s.src = 'https://gc.zgo.at/count.js';
+        s.onload = () => {
+            analyticsReady = true;
+            analyticsQueue.forEach(e => sendAnalyticsEvent(e.path, e.title));
+            analyticsQueue = [];
+        };
+        document.head.appendChild(s);
+    } catch (e) { /* η μέτρηση δεν πρέπει ποτέ να χαλάει το site */ }
+}
+
+function sendAnalyticsEvent(path, title) {
+    try {
+        if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+            window.goatcounter.count({ path: path, title: title || path, event: true });
+        }
+    } catch (e) { /* αγνοείται */ }
+}
+
+// trackEvent('art/art_013', 'Τίτλος'): καταγράφει γεγονός (άνοιγμα έργου, κλικ σε κατάστημα κλπ.)
+function trackEvent(path, title) {
+    if (!GOATCOUNTER_ENDPOINT) return;
+    if (analyticsDebug) { console.log('[analytics] event:', path, title || ''); return; }
+    if (isPreviewMode()) return;
+    if (analyticsReady) sendAnalyticsEvent(path, title);
+    else analyticsQueue.push({ path: path, title: title });
+}
+
 // v12: Συλλογές. Κάθε έργο έχει "collection_ids": ["c01", ...] (λίστα, ώστε να ανήκει σε περισσότερες συλλογές).
 // Οι τίτλοι των συλλογών ορίζονται μία φορά στο portfolio.collections: [{ collection_id, collection_title }]
 function artCollectionIds(art) {
@@ -406,12 +448,14 @@ function buildContactPage(data) {
     const email = data.pages.contact.email;
     emailLink.href = `mailto:${email}`;
     emailLink.innerText = email;
+    emailLink.addEventListener('click', () => trackEvent('contact/email-click', 'Contact: email click'));   // v26
 
     // v16: κουμπί "Copy address" - αντιγράφει τη διεύθυνση στο πρόχειρο
     const copyBtn = document.getElementById('copy-email');
     if (copyBtn) {
         const label = copyBtn.innerText;
         copyBtn.addEventListener('click', async () => {
+            trackEvent('contact/copy-address', 'Contact: copy address');   // v26
             let ok = false;
             try {
                 await navigator.clipboard.writeText(email);
@@ -445,6 +489,8 @@ function buildContactPage(data) {
             a.target = '_blank';
             a.rel = 'noopener';
             a.innerText = shop.text || shop.url;
+            const slug = (shop.text || shop.url).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            a.addEventListener('click', () => trackEvent('shop/' + slug, 'Shop: ' + (shop.text || shop.url)));   // v26
             shopsBox.appendChild(a);
         });
         const shopsTitle = document.getElementById('contact-shops-title');
@@ -783,6 +829,7 @@ function showLightboxArtwork() {
     const art = lightboxList[lightboxIndex];
     lightboxZoom.reset();
     if (art && art.id) setArtworkHash(art.id);
+    if (art && art.id) trackEvent('art/' + art.id, art.title);   // v26: έργο που προβλήθηκε
     const img = document.getElementById('lightbox-img');
     const loading = document.getElementById('lightbox-loading');
     const token = ++lightboxToken;
@@ -882,5 +929,6 @@ function createArtworkCard(art, list) {
     return div;
 }
 
+loadAnalytics();
 document.addEventListener('DOMContentLoaded', initSite);
 
