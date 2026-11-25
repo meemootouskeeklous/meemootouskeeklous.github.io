@@ -621,3 +621,94 @@ mark.hl {
 .al-center { text-align: center; }
 .al-right { text-align: right; }
 .al-justify { text-align: justify; }
+
+/* ============================================================
+   v27: Άρθρα (articles.html και articles/*.html, φτιάχνονται από το build.py)
+   ============================================================ */
+.articles-section, .article { max-width: 760px; margin: 0 auto; }
+.articles-intro { color: #555; line-height: 1.6; margin-bottom: 30px; }
+.articles-empty { color: #777; font-style: italic; }
+
+/* λίστα άρθρων */
+.article-list { list-style: none; padding: 0; margin: 0; }
+.article-card { padding: 20px 0; border-top: 1px solid #ddd; }
+.article-card:last-child { border-bottom: 1px solid #ddd; }
+.card-title { font-size: 1.25rem; font-weight: 600; color: #222; text-decoration: none; }
+.card-title:hover { color: #C2410C; }
+.card-meta { margin: 6px 0 0; font-size: 0.85rem; color: #777; }
+.card-summary { margin: 8px 0 10px; line-height: 1.55; }
+.card-draft, .draft-banner { background: #fde68a; color: #7a4b00; font-size: 0.75rem; font-weight: 700; letter-spacing: .06em; padding: 2px 8px; border-radius: 3px; }
+.draft-banner { display: block; text-align: center; padding: 8px; margin: 0 0 20px; }
+.tag { display: inline-block; font-size: 0.78rem; color: #555; background: #ececec; padding: 2px 9px; border-radius: 10px; margin: 0 6px 6px 0; }
+
+/* σελίδα άρθρου */
+.article-back { font-size: 0.9rem; margin: 0 0 20px; }
+.article-back a, .article a { color: #0b6e75; }
+.article-back a:hover, .article a:hover { color: #C2410C; }
+.article-back-bottom { margin-top: 40px; }
+.article-title { font-size: 2rem; line-height: 1.25; margin: 0 0 8px; }
+.article-series { margin: 0; font-size: 0.9rem; color: #0b6e75; font-weight: 600; }
+.article-meta { margin: 6px 0 14px; font-size: 0.88rem; color: #777; }
+.article-summary { font-size: 1.1rem; line-height: 1.55; color: #444; margin: 0 0 12px; }
+.btn-pdf { margin-top: 10px; }
+
+.toc { background: #f0f0f0; border-radius: 4px; padding: 14px 20px; margin: 24px 0; }
+.toc h3 { margin: 0 0 8px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em; color: #666; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 4px 0; }
+.toc .toc-l3 { padding-left: 18px; font-size: 0.92rem; }
+
+.article-body { font-size: 1.05rem; line-height: 1.75; }
+.article-body h2 { font-size: 1.5rem; margin: 2.2em 0 0.6em; padding-top: 0.2em; }
+.article-body h3 { font-size: 1.2rem; margin: 1.8em 0 0.5em; }
+.article-body p, .article-body ul, .article-body ol { margin: 0 0 1.1em; }
+.article-body li { margin: 0.3em 0; }
+.article-body blockquote { margin: 1.2em 0; padding: 0.2em 1.2em; border-left: 4px solid #ccc; color: #555; }
+.article-body code { font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: 0.9em; background: #ececec; padding: 1px 5px; border-radius: 3px; }
+.article-body table { border-collapse: collapse; margin: 1.4em 0; width: 100%; font-size: 0.95rem; display: block; overflow-x: auto; }
+.article-body th, .article-body td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; vertical-align: top; }
+.article-body th { background: #ececec; }
+
+.math-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+/* κώδικας (χρωματισμός από το assets/vendor/pygments.css) */
+.article-body .codehilite { margin: 1.2em 0; border: 1px solid #ddd; border-radius: 4px; background: #f6f8fa !important; }
+.article-body .codehilite pre { margin: 0; padding: 14px 16px; overflow-x: auto; font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: 0.88rem; line-height: 1.5; }
+.article-body .codehilite code, .article-body .codehilite pre span { background: none; padding: 0; }
+.code-file { margin: 1.4em 0; }
+.code-file figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #e4e4e4; padding: 6px 14px; border-radius: 4px 4px 0 0; font-size: 0.85rem; }
+.code-file .codehilite { margin: 0; border-radius: 0 0 4px 4px; }
+.code-name { font-family: Consolas, "SFMono-Regular", Menlo, monospace; }
+
+/* εικόνες */
+.article-figure { margin: 1.6em 0; text-align: center; }
+.article-figure img { max-width: 100%; height: auto; border-radius: 3px; }
+.article-figure figcaption { font-size: 0.85rem; color: #666; margin-top: 8px; }
+
+/* σχετικά έργα και σειρά */
+.related-works, .series-nav { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+.related-works h3, .series-nav h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em; color: #666; margin: 0 0 12px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.related-art { display: block; text-decoration: none; color: #333; font-size: 0.85rem; }
+.related-art img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; margin-bottom: 6px; }
+.series-nav ol { margin: 0; padding-left: 22px; }
+.series-nav li.current { font-weight: 700; }
+
+@media (max-width: 768px) {
+    .article-title { font-size: 1.6rem; }
+    .article-body { font-size: 1rem; }
+}
+
+/* Εκτύπωση / "Save as PDF": μόνο το κείμενο του άρθρου */
+@media print {
+    #globalheader-placeholder, .hero-banner, .site-footer, .article-back, .btn, .toc, .code-download, .preview-banner, .draft-banner { display: none !important; }
+    body { background: #fff; color: #000; }
+    #main-content { margin: 0; padding: 0; max-width: none; }
+    .article { max-width: none; }
+    .article-body, .article-body p { font-size: 11pt; line-height: 1.55; }
+    .article-body h2, .article-body h3 { break-after: avoid; }
+    .code-file, .article-body .codehilite, .article-figure, .math-display, .article-body table { break-inside: avoid; }
+    .article-body .codehilite pre { white-space: pre-wrap; word-break: break-word; }
+    .related-works, .series-nav { break-inside: avoid; }
+    .article a { color: #000; text-decoration: none; }
+}

@@ -32,6 +32,7 @@
   "menu": [
     { "id": "home", "title": "Home", "url": "home.html" },
     { "id": "my_art", "title": "My Art", "url": "my-art.html" },
+    { "id": "articles", "title": "Articles", "url": "articles.html", "requires_articles": true },
     { "id": "about", "title": "About", "url": "about.html" },
     { "id": "contact", "title": "Contact", "url": "contact.html" }
   ],

@@ -285,6 +285,9 @@ async function initSite() {
             document.documentElement.style.setProperty('--art-default-bg', globalData.site_config.default_art_background);
         }
 
+        // v27: το menu "Articles" (requires_articles) εμφανίζεται μόνο αν υπάρχει τουλάχιστον ένα άρθρο
+        globalData.articlesCount = await countArticles();
+
         buildHeader(globalData);
         initializeMenu();
 
@@ -304,16 +307,29 @@ async function initSite() {
     }
 }
 
+// v27: πλήθος άρθρων (από το articles/index.json που φτιάχνει το build.py). Αν λείπει το αρχείο: 0.
+async function countArticles() {
+    try {
+        const r = await fetch('articles/index.json');
+        if (!r.ok) return 0;
+        const j = await r.json();
+        return Array.isArray(j.articles) ? j.articles.length : 0;
+    } catch (e) {
+        return 0;
+    }
+}
+
 // Σημαδεύει το κουμπί της τρέχουσας σελίδας (.current). Καλείται αφού έχει χτιστεί το μενού.
 function initializeMenu() {
     const currentUrl = window.location.pathname;
     const menuLinks = document.querySelectorAll("#menu-list a");
+    const navPage = document.body.dataset.nav || '';   // v27: οι σελίδες των άρθρων σημαδεύουν το "articles.html"
 
     menuLinks.forEach(link => {
         const linkPage = link.getAttribute("href");
 
         // Έλεγχος αν το URL περιλαμβάνει το όνομα του αρχείου ή αν είμαστε στην αρχική
-        if (currentUrl.endsWith(linkPage) || ((currentUrl.endsWith("/") || currentUrl.endsWith("index.html")) && linkPage === "home.html")) {
+        if ((navPage && navPage === linkPage) || (!navPage && currentUrl.endsWith(linkPage)) || ((currentUrl.endsWith("/") || currentUrl.endsWith("index.html")) && linkPage === "home.html")) {
             link.classList.add("current");
         } else {
             link.classList.remove("current");
@@ -334,6 +350,7 @@ function buildHeader(data) {
     const menuList = document.getElementById('menu-list');
     menuList.innerHTML = ''; // Καθαρισμός για σιγουριά
     data.menu.forEach(item => {
+        if (item.requires_articles === true && !(data.articlesCount > 0)) return;   // v27
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = item.url;
